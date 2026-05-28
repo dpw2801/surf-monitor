@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O'ahu Surf Monitor 🌊</title>
+  <style>
+    :root {
+      --bg:        #0b1622;
+      --bg2:       #111f30;
+      --bg3:       #172840;
+      --border:    #1e3550;
+      --text:      #d4e8f7;
+      --muted:     #6a90b0;
+      --accent:    #38b2d8;
+      --good:      #22c55e;
+      --fair:      #eab308;
+      --poor:      #ef4444;
+      --flat:      #64748b;
+      --epic:      #f59e0b;
+      --radius:    12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      padding-bottom: 3rem;
+    }
+
+    /* ── Header ──────────────────────────────── */
+    header {
+      background: linear-gradient(160deg, #0d2340 0%, #0b4c7a 60%, #0e7ab8 100%);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230b1622' fill-opacity='0.4' d='M0,64L60,58.7C120,53,240,43,360,53.3C480,64,600,96,720,96C840,96,960,64,1080,48C1200,32,1320,32,1380,32L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z'/%3E%3C/svg%3E") bottom/cover no-repeat;
+      opacity: 0.6;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+    header p {
+      color: #93c5e8;
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    #updated-time {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 0.25rem 0.9rem;
+      font-size: 0.78rem;
+      color: #b0d8f0;
+      position: relative;
+    }
+
+    /* ── Layout ──────────────────────────────── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem 0;
+    }
+
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Best 3 cards ────────────────────────── */
+    .best-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .best-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.4rem 1.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .best-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .best-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #0ea5e9);
+    }
+    .best-card.dtw::before {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 2rem; height: 2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .dtw-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #f59e0b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .best-card .spot-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.1;
+      padding-right: 2.5rem;
+    }
+    .best-card .date-label {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    .wave-size {
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0.9rem 0 0.2rem;
+      color: #fff;
+    }
+    .wave-relation {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.78rem;
+      color: var(--text);
+    }
+    .tag.go-time {
+      background: rgba(56,178,216,0.12);
+      border-color: rgba(56,178,216,0.3);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tag.offshore {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.25);
+      color: var(--good);
+    }
+    .tag.onshore {
+      background: rgba(239,68,68,0.1);
+      border-color: rgba(239,68,68,0.25);
+      color: var(--poor);
+    }
+
+    .headline {
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      border-left: 2px solid var(--border);
+      padding-left: 0.6rem;
+      line-height: 1.4;
+    }
+
+    /* ── Current conditions table ────────────── */
+    .spot-list {
+      display: grid;
+      gap: 0.5rem;
+    }
+    .spot-row {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto auto;
+      align-items: center;
+      gap: 0.75rem;
+      transition: background 0.1s;
+    }
+    .spot-row:hover { background: var(--bg3); }
+
+    .spot-row .sname {
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .spot-row .sdist {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .rating-pill {
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .rating-pill.epic  { background:#f59e0b22; color:#f59e0b; border:1px solid #f59e0b44; }
+    .rating-pill.good  { background:#22c55e22; color:#22c55e; border:1px solid #22c55e44; }
+    .rating-pill.fair  { background:#eab30822; color:#eab308; border:1px solid #eab30844; }
+    .rating-pill.poor  { background:#ef444422; color:#ef4444; border:1px solid #ef444444; }
+    .rating-pill.flat  { background:#64748b22; color:#64748b; border:1px solid #64748b44; }
+
+    .wave-col { font-size: 0.85rem; font-weight: 700; white-space: nowrap; }
+    .wind-col { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+    .offshore-wind { color: var(--good) !important; }
+    .onshore-wind  { color: var(--poor) !important; }
+
+    /* ── Loading / error states ──────────────── */
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .loading span { display: inline-block; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .error-box {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      color: #fca5a5;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    /* ── Footer ──────────────────────────────── */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 3rem;
+      padding: 0 1rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Responsive ──────────────────────────── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .spot-row { grid-template-columns: 1fr auto auto; }
+      .spot-row .sdist, .wind-col { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌊 O'ahu Surf Monitor</h1>
+  <p>Honolulu · 80-mile radius · Powered by Surfline</p>
+  <span id="updated-time">Loading…</span>
+</header>
+
+<main>
+
+  <!-- Best 3 this week -->
+  <section>
+    <h2>📅 Best Spots This Week</h2>
+    <div id="best3" class="best-grid">
+      <div class="loading"><span>Fetching forecasts…</span></div>
+    </div>
+  </section>
+
+  <!-- Current conditions -->
+  <section>
+    <h2>⚡ Current Conditions</h2>
+    <div id="current-spots" class="spot-list">
+      <div class="loading"><span>Loading…</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Data via <a href="https://www.surfline.com" target="_blank">Surfline</a> ·
+  Updated automatically every 30 min via GitHub Actions ·
+  <a href="https://ntfy.sh/surf-report-checke" target="_blank">Subscribe to ntfy alerts</a>
+</footer>
+
+<script>
+  // ── Rating helpers ─────────────────────────────────────
+  const RATING_EMOJI = {
+    FLAT: "⬜", VERY_POOR: "🟥", POOR: "🟥",
+    POOR_TO_FAIR: "🟨", FAIR: "🟨",
+    FAIR_TO_GOOD: "🟩", GOOD: "🟩", VERY_GOOD: "🟩", EPIC: "⭐",
+  };
+
+  function windTagClass(dir) {
+    if (!dir) return "";
+    const d = dir.toLowerCase();
+    if (d.includes("offshore")) return "offshore";
+    if (d.includes("onshore"))  return "onshore";
+    return "";
+  }
+
+  function windDirLabel(dir) {
+    if (!dir) return "—";
+    return dir.replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  // ── Build Best-3 cards ─────────────────────────────────
+  function renderBest3(items) {
+    const el = document.getElementById("best3");
+    if (!items || items.length === 0) {
+      el.innerHTML = '<div class="error-box">No forecast data available yet.</div>';
+      return;
+    }
+    el.innerHTML = items.map((s, i) => {
+      const dtw = s.dayToWatch;
+      const wc  = windTagClass(s.windDir);
+      return `
+        <div class="best-card ${dtw ? "dtw" : ""}">
+          <div class="rank-badge">#${i + 1}</div>
+          ${dtw ? '<div class="dtw-flag">⭐ Day to Watch</div>' : ""}
+          <div class="spot-name">${s.spotName}</div>
+          <div class="date-label">${s.dateLabel}</div>
+          <div class="wave-size">${s.waveMin}–${s.waveMax} <span style="font-size:1rem;font-weight:400;color:var(--muted)">ft</span></div>
+          <div class="wave-relation">${s.waveRelation}</div>
+          <div class="meta-row">
+            <span class="tag go-time">⏰ Go at ${s.goTime}</span>
+            <span class="tag ${wc}">💨 ${s.windMph} mph ${windDirLabel(s.windDir)}</span>
+            <span class="tag">📍 ${s.dist} mi</span>
+          </div>
+          ${s.headline ? `<div class="headline">"${s.headline}"</div>` : ""}
+        </div>`;
+    }).join("");
+  }
+
+  // ── Build current conditions list ──────────────────────
+  function renderCurrent(spots) {
+    const el = document.getElementById("current-spots");
+    if (!spots || spots.length === 0) {
+      el.innerHTML = '<div class="error-box">No current conditions data.</div>';
+      return;
+    }
+    el.innerHTML = spots.map(s => {
+      const wc = windTagClass(s.windDir);
+      const emoji = RATING_EMOJI[s.rating] || "🟨";
+      const waves = s.waveMax > 0
+        ? `${s.waveMin.toFixed(1)}–${s.waveMax.toFixed(1)} ft`
+        : "—";
+      const windCls = wc === "offshore" ? "offshore-wind" : wc === "onshore" ? "onshore-wind" : "";
+      return `
+        <div class="spot-row">
+          <div>
+            <div class="sname">${emoji} ${s.name}</div>
+            <div class="sdist">${s.dist} mi away</div>
+          </div>
+          <span class="rating-pill ${s.ratingClass}">${s.ratingLabel}</span>
+          <span class="wave-col">${waves}</span>
+          <span class="wind-col ${windCls}">${s.windMph} mph ${windDirLabel(s.windDir)}</span>
+        </div>`;
+    }).join("");
+  }
+
+  // ── Load data ──────────────────────────────────────────
+  async function loadData() {
+    // Cache-bust so the browser always fetches the latest JSON
+    const url = `data/surf.json?t=${Date.now()}`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      document.getElementById("updated-time").textContent =
+        `Last updated: ${data.updatedLabel}`;
+
+      renderBest3(data.best3);
+      renderCurrent(data.current);
+    } catch (err) {
+      document.getElementById("updated-time").textContent = "Data unavailable";
+      document.getElementById("best3").innerHTML =
+        `<div class="error-box">
+          Could not load surf data.<br>
+          <small>Run <code>python fetch_data.py</code> locally or trigger the GitHub Action to generate <code>data/surf.json</code>.</small>
+         </div>`;
+      document.getElementById("current-spots").innerHTML = "";
+      console.error(err);
+    }
+  }
+
+  loadData();
+  // Auto-refresh every 30 minutes
+  setInterval(loadData, 30 * 60 * 1000);
+</script>
+</body>
+</html>

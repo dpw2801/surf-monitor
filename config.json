@@ -1,0 +1,13 @@
+{
+  "latitude": 21.3069,
+  "longitude": -157.8583,
+  "drive_radius_miles": 80,
+  "check_interval_minutes": 30,
+  "ntfy_topic": "surf-report-checke",
+  "rating_threshold": "GOOD",
+  "min_wave_height_ft": 2.5,
+  "max_wind_speed_mph": 15,
+  "forecast_min_wave_height_ft": 3.0,
+  "forecast_days_ahead": 5,
+  "forecast_hour": 7
+}
