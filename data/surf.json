@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-23T22:43:41",
-  "updatedLabel": "10:43 PM, Tuesday Jun 23",
+  "updated": "2026-06-23T23:47:58",
+  "updatedLabel": "11:47 PM, Tuesday Jun 23",
   "current": [
     {
       "id": "584204204e65fad6a7709218",
@@ -12,12 +12,12 @@
       "ratingLabel": "Poor",
       "ratingClass": "poor",
       "waveMin": 1.67323,
-      "waveMax": 2.69029,
+      "waveMax": 2.65748,
       "waveRelation": "Thigh to waist",
       "windMph": 16.1,
-      "windDir": "Cross-shore",
+      "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.3,
       "rank": 22
     },
     {
@@ -26,16 +26,16 @@
       "lat": 21.25460513357954,
       "lon": -157.79432,
       "dist": 5.5,
-      "rating": "FAIR_TO_GOOD",
-      "ratingLabel": "Fair to Good",
+      "rating": "FAIR",
+      "ratingLabel": "Fair",
       "ratingClass": "fair",
-      "waveMin": 4.25652,
-      "waveMax": 4.89653,
+      "waveMin": 4.18541,
+      "waveMax": 4.78987,
       "waveRelation": "Chest to head",
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 22
     },
     {
@@ -47,13 +47,13 @@
       "rating": "POOR",
       "ratingLabel": "Poor",
       "ratingClass": "poor",
-      "waveMin": 1.81011,
-      "waveMax": 2.8544,
+      "waveMin": 1.7753,
+      "waveMax": 2.81959,
       "waveRelation": "Thigh to waist",
       "windMph": 16.1,
-      "windDir": "Cross-shore",
+      "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.3,
       "rank": 21
     },
     {
@@ -65,13 +65,13 @@
       "rating": "FAIR_TO_GOOD",
       "ratingLabel": "Fair to Good",
       "ratingClass": "fair",
-      "waveMin": 4.35143,
+      "waveMin": 4.38585,
       "waveMax": 5.03988,
       "waveRelation": "Chest to head",
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 21
     },
     {
@@ -84,12 +84,12 @@
       "ratingLabel": "Poor",
       "ratingClass": "poor",
       "waveMin": 1.0502,
-      "waveMax": 2.1354,
+      "waveMax": 2.10039,
       "waveRelation": "Knee to thigh",
       "windMph": 16.1,
-      "windDir": "Cross-shore",
+      "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 20
     },
     {
@@ -107,7 +107,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 20
     },
     {
@@ -120,12 +120,12 @@
       "ratingLabel": "Poor",
       "ratingClass": "poor",
       "waveMin": 1.0502,
-      "waveMax": 2.1354,
+      "waveMax": 2.10039,
       "waveRelation": "Knee to thigh",
       "windMph": 16.1,
-      "windDir": "Cross-shore",
+      "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 19
     },
     {
@@ -143,7 +143,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 19
     },
     {
@@ -155,13 +155,13 @@
       "rating": "FAIR",
       "ratingLabel": "Fair",
       "ratingClass": "fair",
-      "waveMin": 2.29713,
+      "waveMin": 2.26233,
       "waveMax": 3.34129,
       "waveRelation": "Thigh to stomach",
       "windMph": 16.1,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 18
     },
     {
@@ -179,7 +179,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 18
     },
     {
@@ -192,12 +192,12 @@
       "ratingLabel": "Fair",
       "ratingClass": "fair",
       "waveMin": 2.56403,
-      "waveMax": 3.63816,
+      "waveMax": 3.60351,
       "waveRelation": "Thigh to stomach",
       "windMph": 16.1,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 17
     },
     {
@@ -215,7 +215,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 17
     },
     {
@@ -227,13 +227,13 @@
       "rating": "FAIR",
       "ratingLabel": "Fair",
       "ratingClass": "fair",
-      "waveMin": 2.87323,
-      "waveMax": 3.92441,
-      "waveRelation": "Waist to chest",
+      "waveMin": 2.20748,
+      "waveMax": 3.25866,
+      "waveRelation": "Thigh to stomach",
       "windMph": 16.1,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 16
     },
     {
@@ -251,7 +251,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 16
     },
     {
@@ -263,13 +263,13 @@
       "rating": "POOR",
       "ratingLabel": "Poor",
       "ratingClass": "poor",
-      "waveMin": 2.00099,
+      "waveMin": 2.0361,
       "waveMax": 3.08925,
       "waveRelation": "Thigh to waist",
       "windMph": 16.1,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 15
     },
     {
@@ -287,7 +287,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 15
     },
     {
@@ -299,13 +299,13 @@
       "rating": "POOR",
       "ratingLabel": "Poor",
       "ratingClass": "poor",
-      "waveMin": 2.00267,
+      "waveMin": 2.03781,
       "waveMax": 3.09184,
       "waveRelation": "Thigh to waist",
       "windMph": 16.1,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 14
     },
     {
@@ -314,8 +314,8 @@
       "lat": 21.274598513189574,
       "lon": -157.82678,
       "dist": 3.0,
-      "rating": "FAIR",
-      "ratingLabel": "Fair",
+      "rating": "POOR_TO_FAIR",
+      "ratingLabel": "Poor to Fair",
       "ratingClass": "fair",
       "waveMin": 1.11549,
       "waveMax": 2.09974,
@@ -323,7 +323,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 14
     },
     {
@@ -336,12 +336,12 @@
       "ratingLabel": "Poor",
       "ratingClass": "poor",
       "waveMin": 1.44357,
-      "waveMax": 2.46063,
+      "waveMax": 2.42782,
       "waveRelation": "Knee to thigh",
       "windMph": 16.1,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.2,
+      "tideHeight": 1,
       "rank": 13
     },
     {
@@ -359,7 +359,7 @@
       "windMph": 15.0,
       "windDir": "Offshore",
       "tideType": "NORMAL",
-      "tideHeight": 1.6,
+      "tideHeight": 1.5,
       "rank": 13
     }
   ],
